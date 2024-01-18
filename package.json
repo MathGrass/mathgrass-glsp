@@ -24,7 +24,7 @@
     "lint:ci": "yarn lint -o eslint.xml -f checkstyle",
     "prepare": "yarn clean && yarn build",
     "watch": "tsc -w",
-    "run:ws": "node . -p 8081 -w"
+    "start:ws": "node . -p 8081 -w"
   },
   "dependencies": {
     "@eclipse-glsp/layout-elk": "2.1.0-next.79",
