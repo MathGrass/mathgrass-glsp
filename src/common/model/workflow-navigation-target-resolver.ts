@@ -16,7 +16,7 @@
 import { NavigationTarget } from '@eclipse-glsp/protocol';
 import { ModelState, NavigationTargetResolution, NavigationTargetResolver } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
-import { TaskNode } from '../graph-extension';
+import { Node } from '../graph-extension';
 
 @injectable()
 export class WorkflowNavigationTargetResolver extends NavigationTargetResolver {
@@ -26,7 +26,7 @@ export class WorkflowNavigationTargetResolver extends NavigationTargetResolver {
     async resolve(navigationTarget: NavigationTarget): Promise<NavigationTargetResolution> {
         if (navigationTarget.args && navigationTarget.args['name']) {
             const name = navigationTarget.args['name'];
-            const taskNodes = this.modelState.index.getAllByClass<TaskNode>(TaskNode);
+            const taskNodes = this.modelState.index.getAllByClass<Node>(Node);
             const element = taskNodes.find(node => name === node.name);
             if (element) {
                 return new NavigationTargetResolution([element.id]);

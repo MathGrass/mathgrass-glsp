@@ -13,29 +13,28 @@
  *
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  ********************************************************************************/
-import { GhostElement, Point } from '@eclipse-glsp/protocol';
-import { CreateNodeOperation, GNode } from '@eclipse-glsp/server';
 import { injectable } from 'inversify';
-import { TaskNode, TaskNodeBuilder } from '../graph-extension';
 import { ModelTypes } from '../util/model-types';
-import { CreateWorkflowNodeOperationHandler } from './create-workflow-node-operation-handler';
+import { CreateNodeOperation, GModelCreateNodeOperationHandler, GNode, GhostElement, Point } from '@eclipse-glsp/server';
+import { Node, NodeBuilder } from '../graph-extension';
 
 @injectable()
-export abstract class CreateTaskHandler extends CreateWorkflowNodeOperationHandler {
+export class CreateNodeHandler extends GModelCreateNodeOperationHandler {
+    elementTypeIds = [ModelTypes.NODE];
+    label = 'Node';
+
     createNode(operation: CreateNodeOperation, relativeLocation?: Point): GNode | undefined {
         return this.builder(relativeLocation).build();
     }
 
-    protected builder(point: Point = Point.ORIGIN, elementTypeId = this.elementTypeIds[0]): TaskNodeBuilder {
-        return TaskNode.builder()
-            .position(point ?? Point.ORIGIN)
-            .name(this.label.replace(' ', '') + this.modelState.index.getAllByClass(TaskNode).length)
+    protected builder(point: Point = Point.ORIGIN, elementTypeId = this.elementTypeIds[0]): NodeBuilder {
+        return Node.builder()
+            .position(point)
             .type(elementTypeId)
-            .taskType(ModelTypes.toNodeType(elementTypeId))
-            .children();
+            .name(this.label.replace(' ', '') + this.modelState.index.getAllByClass(Node).length)
     }
 
     override createTriggerGhostElement(elementTypeId: string): GhostElement | undefined {
-        return { template: this.serializer.createSchema(this.builder(undefined, elementTypeId).build()), dynamic: true };
+        return { template: this.serializer.createSchema(this.builder(undefined, elementTypeId).build()) };
     }
 }

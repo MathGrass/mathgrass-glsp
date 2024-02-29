@@ -19,7 +19,7 @@ import { configureELKLayoutModule } from '@eclipse-glsp/layout-elk';
 import { createAppModule, LogLevel, WorkerServerLauncher } from '@eclipse-glsp/server/browser';
 import { Container } from 'inversify';
 import { WorkflowLayoutConfigurator } from '../common/layout/workflow-layout-configurator';
-import { WorkflowDiagramModule, WorkflowServerModule } from '../common/workflow-diagram-module';
+import { WorkflowDiagramModule, WorkflowServerModule } from '../common/simple-diagram-module';
 import { WorkflowMockModelStorage } from './mock-model-storage';
 
 export async function launch(argv?: string[]): Promise<void> {

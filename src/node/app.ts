@@ -20,7 +20,7 @@ import { createAppModule, GModelStorage, SocketServerLauncher, WebSocketServerLa
 import { Container } from 'inversify';
 
 import { WorkflowLayoutConfigurator } from '../common/layout/workflow-layout-configurator';
-import { WorkflowDiagramModule, WorkflowServerModule } from '../common/workflow-diagram-module';
+import { WorkflowDiagramModule, WorkflowServerModule } from '../common/simple-diagram-module';
 import { createWorkflowCliParser } from './workflow-cli-parser';
 
 async function launch(argv?: string[]): Promise<void> {

@@ -24,11 +24,13 @@
     "lint:ci": "yarn lint -o eslint.xml -f checkstyle",
     "prepare": "yarn clean && yarn build",
     "watch": "tsc -w",
+    "watch:webpack": "webpack -w",
     "start:ws": "node . -p 8081 -w"
   },
   "dependencies": {
     "@eclipse-glsp/layout-elk": "2.1.0-next.79",
     "@eclipse-glsp/server": "2.1.0-next.79",
+    "concurrently": "^8.2.2",
     "inversify": "^6.0.1"
   },
   "devDependencies": {

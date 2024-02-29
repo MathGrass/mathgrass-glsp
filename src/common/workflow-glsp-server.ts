@@ -17,7 +17,7 @@ import { Args, ArgsUtil, DefaultGLSPServer, InitializeResult, Logger, MaybePromi
 import { inject, injectable } from 'inversify';
 
 @injectable()
-export class WorkflowGLSPServer extends DefaultGLSPServer {
+export class SimpleGLSPServer extends DefaultGLSPServer {
     MESSAGE_KEY = 'message';
     TIMESTAMP_KEY = 'timestamp';
 

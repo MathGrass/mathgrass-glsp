@@ -15,7 +15,7 @@
  ********************************************************************************/
 import { GModelElement, LabelEditValidator, ModelState, ValidationStatus } from '@eclipse-glsp/server';
 import { inject, injectable } from 'inversify';
-import { TaskNode } from '../graph-extension';
+import { Node } from '../graph-extension';
 
 @injectable()
 export class WorkflowLabelEditValidator implements LabelEditValidator {
@@ -26,7 +26,7 @@ export class WorkflowLabelEditValidator implements LabelEditValidator {
         if (label.length < 1) {
             return { severity: ValidationStatus.Severity.ERROR, message: 'Name must not be empty' };
         }
-        const taskNodes = this.modelState.index.getAllByClass<TaskNode>(TaskNode);
+        const taskNodes = this.modelState.index.getAllByClass<Node>(Node);
         const hasDuplicate = taskNodes
             .filter(e => !(e.id === element.id))
             .map(task => task.name)
